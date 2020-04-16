@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ajuda.í</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/styles.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.0.0.slim.js"></script>
+</head>
+<body>
+    @if (TempData["Mensagem-Erro"] != null || TempData["Mensagem-Sucesso"] != null)
+    {
+        @Html.Partial("_PartialMensagem");
+    }
+    @RenderBody()
+    
+    <script src="~/Scripts/umd/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

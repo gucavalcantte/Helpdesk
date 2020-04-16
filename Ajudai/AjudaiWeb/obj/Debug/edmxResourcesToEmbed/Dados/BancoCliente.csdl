@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AJUDA_IModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Chamado">
+    <Key>
+      <PropertyRef Name="idChamado" />
+    </Key>
+    <Property Name="idChamado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idCliente" Type="Int32" Nullable="false" />
+    <Property Name="idProduto" Type="Int32" Nullable="false" />
+    <Property Name="idFuncionario" Type="Int32" />
+    <Property Name="dtAbertura" Type="DateTime" Precision="3" />
+    <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descricao_PosicionamentoCliente" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Prioridade" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="dtAtendimento" Type="DateTime" Precision="3" />
+    <Property Name="PosicionamentoFuncionario" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dtSolucao" Type="DateTime" Precision="3" />
+    <Property Name="Solucao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Avaliacao" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK_Chamado_idCliente" FromRole="Chamado" ToRole="Cliente" />
+    <NavigationProperty Name="Funcionario" Relationship="Self.FK_Chamado_idFuncionario" FromRole="Chamado" ToRole="Funcionario" />
+    <NavigationProperty Name="Produto" Relationship="Self.FK_Chamado_idProduto" FromRole="Chamado" ToRole="Produto" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="idCliente" />
+    </Key>
+    <Property Name="idCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClienteLogin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Senha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Telefone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CEP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Endereço" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Cidade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UF" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="Chamado" Relationship="Self.FK_Chamado_idCliente" FromRole="Cliente" ToRole="Chamado" />
+  </EntityType>
+  <EntityType Name="Funcionario">
+    <Key>
+      <PropertyRef Name="idFuncionario" />
+    </Key>
+    <Property Name="idFuncionario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FuncionarioLogin" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Senha" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Telefone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="NivelAcesso" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="NomeExibicao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Chamado" Relationship="Self.FK_Chamado_idFuncionario" FromRole="Funcionario" ToRole="Chamado" />
+  </EntityType>
+  <EntityType Name="Produto">
+    <Key>
+      <PropertyRef Name="idProduto" />
+    </Key>
+    <Property Name="idProduto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Chamado" Relationship="Self.FK_Chamado_idProduto" FromRole="Produto" ToRole="Chamado" />
+  </EntityType>
+  <Association Name="FK_Chamado_idCliente">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Chamado" Type="Self.Chamado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="idCliente" />
+      </Principal>
+      <Dependent Role="Chamado">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Chamado_idFuncionario">
+    <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="0..1" />
+    <End Role="Chamado" Type="Self.Chamado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Funcionario">
+        <PropertyRef Name="idFuncionario" />
+      </Principal>
+      <Dependent Role="Chamado">
+        <PropertyRef Name="idFuncionario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Chamado_idProduto">
+    <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
+    <End Role="Chamado" Type="Self.Chamado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produto">
+        <PropertyRef Name="idProduto" />
+      </Principal>
+      <Dependent Role="Chamado">
+        <PropertyRef Name="idProduto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AJUDA_IEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Chamado" EntityType="Self.Chamado" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+    <EntitySet Name="Funcionario" EntityType="Self.Funcionario" />
+    <EntitySet Name="Produto" EntityType="Self.Produto" />
+    <AssociationSet Name="FK_Chamado_idCliente" Association="Self.FK_Chamado_idCliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Chamado" EntitySet="Chamado" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Chamado_idFuncionario" Association="Self.FK_Chamado_idFuncionario">
+      <End Role="Funcionario" EntitySet="Funcionario" />
+      <End Role="Chamado" EntitySet="Chamado" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Chamado_idProduto" Association="Self.FK_Chamado_idProduto">
+      <End Role="Produto" EntitySet="Produto" />
+      <End Role="Chamado" EntitySet="Chamado" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,102 @@
+﻿@model Ajudai.Modelo.ddCliente
+@{
+    ViewBag.Title = "Cadastro";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<div class="container">
+    <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="/Content/images/logo.jpeg" alt="" height="72">
+        <h2>Cadastro de cliente</h2>
+        <p class="lead">Preencha os campos abaixo para poder utilizar nosso sistema de chamados.</p>
+    </div>
+
+    <div class="form-horizontal alert-info col-md-12 mb-5">
+        <div class="col-md-12 order-md-1">
+            @using (Html.BeginForm("Cadastro", "Login", FormMethod.Post))
+            {
+
+                <div class="col-md-12">
+                    <h4 class="mb-3">1. Dados Pessoais</h4>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="firstName">Nome Completo</label>
+                        @Html.TextBoxFor(x => x.nome, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="lastName">E-mail</label>
+                        @Html.TextBoxFor(x => x.email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName">Telefone Fixo</label>
+                        @Html.TextBoxFor(x => x.telefone, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.telefone, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName">Telefone Celular</label>
+                        @Html.TextBoxFor(x => x.celular, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.celular, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName">CEP</label>
+                        @Html.TextBoxFor(x => x.cep, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.cep, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName">Endereço</label>
+                        @Html.TextBoxFor(x => x.endereco, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.endereco, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName">Cidade</label>
+                        @Html.TextBoxFor(x => x.cidade, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.cidade, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName">UF</label>
+                        @Html.TextBoxFor(x => x.uf, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.uf, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <h4 class="mb-3">2. Dados de Acesso</h4>
+                </div>
+
+                <div class="row mb-5">
+                    <div class="col-md-6 mb-3">
+                        <label for="firstName">Login</label>
+                        @Html.TextBoxFor(x => x.login, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.login, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="password">Senha</label>
+                        @Html.TextBoxFor(x => x.senha, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.senha, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-lg mb-3 " type="submit">Cadastrar</button>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-left mt-5">
+            <a href="~/Login" class="btn btn-outline-secondary">Voltar para login</a>
+        </div>
+    </div>
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2017-2018 UniDev</p>
+    </footer>
+</div>

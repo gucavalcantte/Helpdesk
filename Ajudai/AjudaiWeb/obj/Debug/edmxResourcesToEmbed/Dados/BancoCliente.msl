@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AJUDA_IModelStoreContainer" CdmEntityContainer="AJUDA_IEntities1">
+    <EntitySetMapping Name="Chamado">
+      <EntityTypeMapping TypeName="AJUDA_IModel.Chamado">
+        <MappingFragment StoreEntitySet="Chamado">
+          <ScalarProperty Name="idChamado" ColumnName="idChamado" />
+          <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+          <ScalarProperty Name="idProduto" ColumnName="idProduto" />
+          <ScalarProperty Name="idFuncionario" ColumnName="idFuncionario" />
+          <ScalarProperty Name="dtAbertura" ColumnName="dtAbertura" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Descricao_PosicionamentoCliente" ColumnName="Descricao_PosicionamentoCliente" />
+          <ScalarProperty Name="Prioridade" ColumnName="Prioridade" />
+          <ScalarProperty Name="dtAtendimento" ColumnName="dtAtendimento" />
+          <ScalarProperty Name="PosicionamentoFuncionario" ColumnName="PosicionamentoFuncionario" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="dtSolucao" ColumnName="dtSolucao" />
+          <ScalarProperty Name="Solucao" ColumnName="Solucao" />
+          <ScalarProperty Name="Avaliacao" ColumnName="Avaliacao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cliente">
+      <EntityTypeMapping TypeName="AJUDA_IModel.Cliente">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+          <ScalarProperty Name="ClienteLogin" ColumnName="ClienteLogin" />
+          <ScalarProperty Name="Senha" ColumnName="Senha" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+          <ScalarProperty Name="Celular" ColumnName="Celular" />
+          <ScalarProperty Name="CEP" ColumnName="CEP" />
+          <ScalarProperty Name="Endereço" ColumnName="Endereço" />
+          <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+          <ScalarProperty Name="UF" ColumnName="UF" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Funcionario">
+      <EntityTypeMapping TypeName="AJUDA_IModel.Funcionario">
+        <MappingFragment StoreEntitySet="Funcionario">
+          <ScalarProperty Name="idFuncionario" ColumnName="idFuncionario" />
+          <ScalarProperty Name="FuncionarioLogin" ColumnName="FuncionarioLogin" />
+          <ScalarProperty Name="Senha" ColumnName="Senha" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+          <ScalarProperty Name="Celular" ColumnName="Celular" />
+          <ScalarProperty Name="NivelAcesso" ColumnName="NivelAcesso" />
+          <ScalarProperty Name="NomeExibicao" ColumnName="NomeExibicao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Produto">
+      <EntityTypeMapping TypeName="AJUDA_IModel.Produto">
+        <MappingFragment StoreEntitySet="Produto">
+          <ScalarProperty Name="idProduto" ColumnName="idProduto" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

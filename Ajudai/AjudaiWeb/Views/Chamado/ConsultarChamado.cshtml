@@ -1,0 +1,139 @@
+﻿@model Ajudai.Modelo.ddChamado
+@{
+    ViewBag.Title = "Consultar Chamado";
+    Layout = "~/Views/Shared/_LayoutPageClient.cshtml";
+}
+<div class="container">
+    <div class="row text-center">
+        <div class="col-md-12 pt-3 mb-3">
+            <h1 class="form-check h2 ">Consultar Chamado</h1>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-12 pb-2 mb-3">
+            <p class="lead">Consulte os detalhes do seu chamado abaixo.</p>
+        </div>
+    </div>
+    <form class="text-center bg-info mb-3">
+        <div class="form-row align-items-center">
+            <div class="col-md-4 mb-3">
+                <label>Produto</label><br />
+                @Model.Produto.nome - @Model.Produto.descricao
+            </div>
+            <div class="col-md-4 mb-3">
+                <label>Data de Abertura</label><br />
+                @Model.dtAbertura
+            </div>
+            <div class="col-md-4 mb-3">
+                <label>Status</label><br />
+                @if (Model.txStatus == "Aberto")
+                {
+                    <span class="text-danger table-dark">Aberto</span>
+                }
+                else
+                if (Model.txStatus == "Em atendimento")
+                {
+                    <span class="text-warning table-dark">Em Atendimento</span>
+                }
+                else
+                if (Model.txStatus == "Concluído")
+                {
+                    <span class="text-success table-dark">Concluído</span>
+                }
+            </div>
+        </div>
+
+        <div class="form-row align-items-center">
+            <div class="col-md-4 mb-3">
+                <label>Descrição do chamado</label><br />
+                @Model.descricao
+            </div>
+
+            @{
+                if (Model.txStatus == "Em atendimento" || Model.txStatus == "Concluído")
+                {
+                    <div class="col-md-4 mb-3">
+                        <label>Posicionamento do funcionário</label><br />
+                        @Model.posicionamentoFuncionario
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label>Posicionamento do cliente</label><br />
+                        @Model.posicionamentoCliente
+                    </div>
+                }
+            }
+        </div>
+        @{
+            if (Model.txStatus == "Concluído")
+            {
+                <div class="form-row align-items-center">
+                    <div class="col-md-4 mb-3">
+                        <label>Solução</label><br />
+                        @Model.solucao
+                    </div>
+                    @{
+                        if (Model.avaliacao != " ")
+                        {
+                            <div class="col-md-4 mb-3">
+                                <label>Avaliação</label><br />
+                                @Model.avaliacao
+                            </div>
+                        }
+                    }
+                </div>
+            }
+        }
+    </form>
+    @{
+        if (Model.txStatus == "Em atendimento" && Model.posicionamentoCliente == " ")
+        {
+            using (Html.BeginForm("CadastrarPosicionamento", "Chamado", FormMethod.Post))
+            {
+                @Html.HiddenFor(x => x.id)
+                <div class="form-row text-center">
+                    <div class="col-md-12 mb-3">
+                        <label>Editar posicionamento</label><br />
+                        @Html.TextAreaFor(x => x.posicionamentoCliente, new { @class = "form-control", rows = "3" })
+                    </div>
+                    <div class="col-md-12 mt-2">
+                        <button type="submit" class="btn btn-success btn-sm px-5">Salvar</button>
+                    </div>
+                </div>
+            }
+        }
+
+        if (Model.txStatus == "Concluído" && Model.avaliacao == " ")
+        {
+            using (Html.BeginForm("CadastrarAvaliacao", "Chamado", FormMethod.Post))
+            {
+                @Html.HiddenFor(x => x.id)
+                <div class="form-row text-center">
+                    <div class="col-md-12 mb-3">
+                        <label>Avaliar atendimento</label><br />
+                        @Html.DropDownListFor(x => x.avaliacao, new SelectList
+                                                (new List<Object>
+                                                    {
+                                                      new {value = 1, text = "Péssimo" },
+                                                      new {value = 2, text = "Ruim" },
+                                                      new {value = 3, text = "Regular" },
+                                                      new {value = 4, text = "Bom" },
+                                                      new {value = 5, text = "Ótimo" }
+                                                    }, "value", "text")
+                                                )
+                    </div>
+                    <div class="col-md-12 mt-2">
+                        <button type="submit" class="btn btn-success btn-sm px-5">Salvar</button>
+                    </div>
+                </div>
+            }
+        }
+    }
+    <footer class="fixed-bottom col-md-12 mb-5">
+        <div class="form-row">
+            <div class="col-md-12 mt-2">
+                <a href="~/Cliente" class="btn btn-outline-dark btn-sm px-5">Voltar</a>
+            </div>
+        </div>
+    </footer>
+</div>

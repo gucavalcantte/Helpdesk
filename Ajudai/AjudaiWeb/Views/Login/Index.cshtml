@@ -1,0 +1,21 @@
+﻿@model Ajudai.Modelo.ddCliente
+
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<link href="~/Content/signin.css" rel="stylesheet" />
+
+
+@using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-signin" }))
+{
+    <img class="d-block mx-auto mb-4" src="/Content/images/logo.jpeg" alt="" height="72">
+    <h1 class="h3 mb-3 font-weight-normal text-center">Minha Área</h1>
+    @Html.LabelFor(x => x.login, new { @class = "sr-only" })
+    @Html.TextBoxFor(x => x.login, new { @class = "form-control", placeholder = "Usuário", required = "required", autofocus = "autofocus" })
+    @Html.LabelFor(x => x.senha, new { @class = "sr-only" })
+    @Html.PasswordFor(x => x.senha, new { @class = "form-control", placeholder = "Senha", required = "required" })
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>
+    <a href="~/Login/Cadastro" class="btn btn-lg btn-danger btn-block">Ainda não tenho cadastro</a>
+    <p class="my-4 text-muted text-center">&copy; 2017-2018 UniDev</p>
+}
+
